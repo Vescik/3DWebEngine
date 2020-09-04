@@ -25,15 +25,7 @@ const cubeMaterial = new THREE.MeshPhongMaterial({
 });
 const cubeTexture = new THREE.LineBasicMaterial( {color:0x0000ff} );
 const  cube = new THREE.Mesh(cubeGeometry,cubeMaterial);
-
-var points = [];
-points.push( new THREE.Vector3( - 10, 0, 0 ) );
-points.push( new THREE.Vector3( 0, 10, 0 ) );
-points.push( new THREE.Vector3( 10, 0, 0 ) );
-
-
-var geometry = new THREE.BufferGeometry().setFromPoints( points );
-var line = new THREE.Line( geometry, cubeTexture );
+const cubeLines = new THREE.Mesh(cubeGeometry,cubeTexture);
 
 
 const light = new THREE.PointLight(colorPink,2);
@@ -47,7 +39,7 @@ light2.position.set(10,20,40);
 scene.add(light);
 scene.add(light2);
 scene.add(cube);
-scene.add(line);
+
 
 camera.position.z = 15;
 
@@ -58,6 +50,8 @@ const  animate = () => {
     requestAnimationFrame(animate);
     cube.rotation.x += .010;
     cube.rotation.z += .010;
+    cubeLines.rotation.x += .010;
+    cubeLines.rotation.z += .010;
     renderer.render(scene, camera);
 };
 animate();
